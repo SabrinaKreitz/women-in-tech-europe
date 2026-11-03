@@ -127,9 +127,17 @@ Changed decisions get a new entry; old ones are not deleted.
 - Ireland "d" from 2018: check HEA graduate data; ask Eurostat user support.
 - Reasons for "d" in Germany, Belgium, France, Hungary, Montenegro.
 - Include non-EU countries in the dashboard?
+- 
+### Clean table
+- Created table `ict_bachelor` from `raw_graduates`: one row per country and
+  year, with females / males / total / flag / country_group. Numbers cast to integer.
+- Check: 410 rows (= 41 geo × 10 years) ✓
+- Female share not stored in the table – calculated in the analysis step,
+  so the table only holds source numbers.
+- Queries saved in `01_explore.sql`.
 
 ### Next steps
-- Create clean table `ict_bachelor` (one row per country and year,
-  females / males / total / flag / country_group). Check: 410 rows.
 - Check females + males = total.
-- Calculate female share.
+- Calculate female share per country and year.
+- First trends: EU27 aggregate over time; highest and lowest countries.
+- Upload `01_explore.sql` and `log.md` updates to GitHub (or set up GitHub Desktop).
