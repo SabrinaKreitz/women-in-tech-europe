@@ -78,5 +78,58 @@ Changed decisions get a new entry; old ones are not deleted.
 - Include non-EU countries later?
 - Which flags appear, and how often?
 
+### Import into DB Browser
+- Created database `women_in_tech.db`; imported CSV as table `raw_graduates`
+- Note: DB Browser only saves after "Write Changes".
+- Queries saved in `01_explore.sql`.
+
+### Profiling (raw_graduates)
+- Rows: 1230 (= 41 geo × 10 years × 3 sexes – complete, no duplicates).
+- Sex values: Females, Males, Total.
+- 41 geo entries: 27 EU + 12 non-EU + 2 aggregates.
+  - Non-EU: Albania, Bosnia and Herzegovina, Georgia, Iceland, Liechtenstein,
+    Montenegro, North Macedonia, Norway, Serbia, Switzerland, Türkiye, United Kingdom.
+  - Aggregates: EU27 (from 2020), EU28 (2013–2020).
+- Decision: use EU27 aggregate as benchmark (consistent over time); not EU28
+  (includes UK, ends 2020).
+- Decision: keep all countries in the clean table with a group column
+  (EU27 / Non-EU / Aggregate); scope chosen per visualisation.
+
+### Flags
+- d (definition differs) = 51 rows, p (provisional) = 3 rows, no flag = 1176.
+- Flags count 3× per year (females, males, total). Years affected:
+  Ireland d (7), Montenegro d (4), Germany d (2), Belgium/France/Hungary d (1),
+  Italy p (1), EU28 d (1).
+- Decision: flagged values kept and marked in the dashboard. Female share is
+  less sensitive to coverage differences than absolute numbers.
+
+### Ireland check
+- Female share: 2015–2017 ≈ 20–24% (no flag), 2018–2024 ≈ 24–28% (d).
+- Spike in 2018 (first flagged year): female graduates +37% (790 → 1086),
+  share 21.2% → 25.4%; 2019 back to 23.6%.
+- Overall upward trend plausible, but 2018 jump may partly reflect the
+  definition change.
+- Hypothesis (unverified): NFQ Level 8 conversion
+  programmes (e.g. Springboard+ Higher Diplomas) may have been included in
+  ISCED 6 from 2018, raising the female share. Not confirmed.
+- Decision: keep Ireland, mark 2018–2024 as "definition differs", mention the
+  2018 spike.
+
+### Missing values
+- 117 of 1230 rows (~10%) = 39 country-years; always missing for all 3 sexes.
+- All EU27 countries complete 2015–2024.
+- Missing: Georgia 9, Montenegro 7, Albania 7, United Kingdom 5 (Brexit),
+  EU28 5, Bosnia and Herzegovina 4, Liechtenstein 2.
+- Decision: EU27 analysis unaffected. Georgia excluded from non-EU comparisons
+  (9 of 10 years missing). Other non-EU countries only shown for years with data.
+
+### Open questions
+- Ireland "d" from 2018: check HEA graduate data; ask Eurostat user support.
+- Reasons for "d" in Germany, Belgium, France, Hungary, Montenegro.
+- Include non-EU countries in the dashboard?
+
 ### Next steps
-- Import CSV into DB Browser, first SQL queries, create clean table.
+- Create clean table `ict_bachelor` (one row per country and year,
+  females / males / total / flag / country_group). Check: 410 rows.
+- Check females + males = total.
+- Calculate female share.
