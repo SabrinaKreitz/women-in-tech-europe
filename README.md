@@ -1,6 +1,6 @@
 # Women in Tech in Europe
 
-Did Europe's women-in-tech gap follow the US curve?
+What are the observable trends for female ICT graduates in Europe?
 
 ## Questions
 1. How has the share of women among ICT graduates developed across European countries?
