@@ -136,7 +136,7 @@ Changed decisions get a new entry; old ones are not deleted.
   so the table only holds source numbers.
 - Queries saved in `01_explore.sql`.
 
-## 4 Nov 2026 (~1 h)
+## 4 Nov 2026 
 
 ### Checks
 - Females + males = total: 5 of 410 rows differ by exactly ±1
@@ -181,9 +181,10 @@ Changed decisions get a new entry; old ones are not deleted.
 - Check ISCED 4/5 (vocational, short-cycle) ICT graduates.
 - Limitation: bootcamps / private training schools not in official statistics.
 
-### Next steps
-- Run minimum-size query (countries < 100 grads); finalise decision.
-- Create `ict_dashboard` table and export to `data/clean/ict_dashboard.csv`.
-- Move project folder out of iCloud.
-- Upload SQL files and log to GitHub (or set up GitHub Desktop).
-- Start dashboard in Tableau Public.
+## 5 Nov 2026 
+
+- Created `ict_dashboard` (371 rows; with female_pct and small_sample column),
+  exported to `data/clean/ict_dashboard.csv`. SQL in `sql/03_dashboard.sql`
+  (rerunnable with DROP TABLE IF EXISTS).
+- Moved project to ~/Projects (out of iCloud); folders: sql/, data/raw/, data/clean/.
+- Observation: Albania 39–43% (2021–2023) – high, non-EU, former socialist.
