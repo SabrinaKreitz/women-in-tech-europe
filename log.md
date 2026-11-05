@@ -136,8 +136,54 @@ Changed decisions get a new entry; old ones are not deleted.
   so the table only holds source numbers.
 - Queries saved in `01_explore.sql`.
 
+## 4 Nov 2026 (~1 h)
+
+### Checks
+- Females + males = total: 5 of 410 rows differ by exactly ±1
+  (Austria 2021, 2022; EU27 2021, 2022 – carried over from Austria; Germany 2016).
+  Likely rounding / statistical disclosure control. Impact < 0.1 pts.
+- Decision: female share = females ÷ official total.
+- Queries saved in `02_analysis.sql`.
+
+### EU27 trend
+- EU27 aggregate (weighted): 19.6% (2015) → 21.6% (2024), +2 pts in 10 years;
+  slow, slightly uneven (dip in 2016).
+- EU27 aggregate = all female ÷ all graduates (weighted by country size),
+  not an average of countries. Unweighted average 2024 ≈ 21.8% – close.
+
+### Country ranking 2024
+- Highest: Sweden 41.2, Romania 33.0, Bulgaria 31.5, Greece 29.3, Finland 28.1,
+  Ireland 27.9. Lowest: Spain 15.8, Belgium 14.7, Italy 14.7.
+- East-West hypothesis: mixed. Romania/Bulgaria top, but Czechia, Hungary,
+  Slovakia, Lithuania below EU. New question: what's different in RO/BG?
+- Sweden: consistently high (31–41%), upward trend; volatility ±3–4 pts
+  due to small numbers. Caution: Swedish 5-year engineering degrees
+  (civilingenjör) are ISCED 7 – check master's level later.
+
+### Change 2015 → 2024
+- Low starters caught up (NL, BE, DK, FI, LT +6–12 pts); high starters fell
+  (CY −18.6, GR −12.7, BG −7.4, HU −6.7, EE −4.3).
+  Possible convergence towards ~20%.
+- Luxembourg: 21–74 grads/year → share pure noise. Cyprus: 142–193 → volatile.
+- Cyprus: 129–193 grads/year (small, volatile). Women fall from 57 (2015) to
+  23–39 (2020s) while total stays stable → real decline in women (numerator),
+  unlike Greece (denominator). Gradual 2015–2020; 2021 (13.1%) outlier.
+- Greece: women stable (~520–600/year), total rises from 2019 (~1,400 → ~2,000)
+  → share falls because more men, not fewer women. Coincides with TEI merger
+  into universities (2018–19) – to check.
+- Decision (proposed): minimum 100 graduates/year for rankings and trends.
+- Method: compare 3-year averages instead of single years.
+
+### Ideas for later
+- Framing: "positive deviance" – learn from countries with high shares.
+- Compare female share among ICT graduates vs ICT workforce (isoc_sks_itsps);
+  gap may show alternative routes (retraining, vocational, bootcamps).
+- Check ISCED 4/5 (vocational, short-cycle) ICT graduates.
+- Limitation: bootcamps / private training schools not in official statistics.
+
 ### Next steps
-- Check females + males = total.
-- Calculate female share per country and year.
-- First trends: EU27 aggregate over time; highest and lowest countries.
-- Upload `01_explore.sql` and `log.md` updates to GitHub (or set up GitHub Desktop).
+- Run minimum-size query (countries < 100 grads); finalise decision.
+- Create `ict_dashboard` table and export to `data/clean/ict_dashboard.csv`.
+- Move project folder out of iCloud.
+- Upload SQL files and log to GitHub (or set up GitHub Desktop).
+- Start dashboard in Tableau Public.
